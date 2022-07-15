@@ -1,6 +1,6 @@
 <template>
   <div class="intro text-white">
-    <header class="max-w-3xl mx-auto p-12 pb-24 flex justify-center items-center space-x-16 min-h-[50vh]">
+    <header class="max-w-3xl mx-auto p-12 pb-24 flex justify-center items-center space-x-16 min-h-[50vh] opacity-0">
       <img
         src="https://avatars.githubusercontent.com/u/645641?v=4"
         class="rounded-full w-32 drop-shadow-lg shadow-blue-600"
@@ -28,7 +28,10 @@ useHead({
     { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
     { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: true },
     { href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap', rel: 'stylesheet' }
-  ]
+  ],
+  bodyAttrs: {
+    style: 'background-color: rgb(37 99 235)' // Prevent white background as soon as possible
+  }
 })
 </script>
 

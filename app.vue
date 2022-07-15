@@ -53,7 +53,7 @@ if (process.client) {
     anime.timeline()
       .add({
         targets: scaleY,
-        value: 0,
+        value: -0.1,
         duration: 1200,
         delay: 100
       })
