@@ -13,3 +13,11 @@ export interface GithubItem {
   title: string;
   updated: string;
 }
+
+export interface TwitterItem {
+  content: string;
+  date: string;
+  id: string;
+  link: string;
+  thumbs: string[];
+}

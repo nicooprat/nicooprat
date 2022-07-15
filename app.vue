@@ -9,8 +9,9 @@
         <path fill="currentColor" d="M250,0.5c97.9,0,186.3,40,250,104.6V0H0v105.1C63.7,40.5,152.1,0.5,250,0.5z" />
       </svg>
       <div class="space-y-32">
-        <Medium :items="medium" />
+        <Medium :items="medium.slice(0,6)" />
         <Github :items="github.slice(0,12)" />
+        <Twitter :items="twitter.slice(0,6)" />
       </div>
     </main>
   </div>
@@ -18,13 +19,13 @@
 
 <script setup lang="ts">
 import anime from 'animejs'
-import { MediumItem, GithubItem } from './types'
+import { MediumItem, GithubItem, TwitterItem } from './types'
 
 const config = useRuntimeConfig()
 
-const { data: twitter } = useAsyncData('twitter', () =>
+const { data: twitter } = useAsyncData<TwitterItem[]>('twitter', () =>
   $fetch(
-    `https://api.apify.com/v2/acts/vdrmota~twitter-scraper/runs/last/dataset/items?token=${config.apifyToken}&status=SUCCEEDED`,
+    `https://api.apify.com/v2/actor-tasks/YTsKf4NT2htwvumtX/runs/last/dataset/items?token=${config.apifyToken}&status=SUCCEEDED`,
   ),
 )
 
