@@ -8,14 +8,17 @@
       <svg class="curve-bottom absolute top-0 text-blue-600 origin-top" viewBox="0 0 500 105" PreserveAspectRatio="none">
         <path fill="currentColor" d="M250,0.5c97.9,0,186.3,40,250,104.6V0H0v105.1C63.7,40.5,152.1,0.5,250,0.5z" />
       </svg>
-      <Medium :items="medium" />
+      <div class="space-y-32">
+        <Medium :items="medium" />
+        <Github :items="github.slice(0,12)" />
+      </div>
     </main>
   </div>
 </template>
 
 <script setup lang="ts">
 import anime from 'animejs'
-import { MediumItem } from './types'
+import { MediumItem, GithubItem } from './types'
 
 const config = useRuntimeConfig()
 
@@ -31,7 +34,7 @@ const { data: medium } = useAsyncData<MediumItem[]>('medium', () =>
   ),
 )
 
-const { data: github } = useAsyncData('github', () =>
+const { data: github } = useAsyncData<GithubItem[]>('github', () =>
   $fetch(
     `https://api.apify.com/v2/actor-tasks/tyh6K9orWEgWGhgov/runs/last/dataset/items?token=${config.apifyToken}&ui=1&clean=true`,
   ),

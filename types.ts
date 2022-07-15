@@ -5,3 +5,11 @@ export interface MediumItem {
   thumb: string
   title: string
 }
+
+export interface GithubItem {
+  description: string;
+  lang: string;
+  link: string;
+  title: string;
+  updated: string;
+}
