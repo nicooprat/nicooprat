@@ -1,22 +1,24 @@
 <template>
-  <div class="mx-auto max-w-5xl grid sm:grid-cols-2 lg:grid-cols-3 gap-8 px-8">
-    <article v-for="(item, i) in items" :key="i" class="bg-white rounded-xl  shadow-lg shadow-slate-500/20 relative">
-      <img :src="item.thumb" alt="item.title" class="rounded-t-lg aspect-video object-cover">
-      <div class="p-6 space-y-2">
-        <h3 class="font-semibold leading-5">
-          <a :href="item.link">
-            <span class="absolute inset-0"></span>
-            {{ item.title }}
-          </a>
-        </h3>
-        <p class="text-slate-600 text-sm">
-          {{ item.excerpt }}
-        </p>
-        <time class="text-slate-400 text-sm">
-          {{ formatDate(item.date) }}
-        </time>
-      </div>
-    </article>
+  <div class="mx-auto max-w-5xl pt-[1px] px-8">
+    <div class="-mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <article v-for="(item, i) in items" :key="i" class="bg-white rounded-xl  shadow-lg shadow-slate-500/20 relative" data-anime="medium-item">
+        <img :src="item.thumb" alt="item.title" class="rounded-t-lg aspect-video object-cover">
+        <div class="p-6 space-y-2">
+          <h3 class="font-semibold leading-5">
+            <a :href="item.link">
+              <span class="absolute inset-0"></span>
+              {{ item.title }}
+            </a>
+          </h3>
+          <p class="text-slate-600 text-sm">
+            {{ item.excerpt }}
+          </p>
+          <time class="text-slate-400 text-sm">
+            {{ formatDate(item.date) }}
+          </time>
+        </div>
+      </article>
+    </div>
   </div>
 </template>
 

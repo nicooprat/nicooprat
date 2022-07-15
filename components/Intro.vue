@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-blue-500 text-white bg-gradient-to-br from-blue-400 to-blue-600 ">
+  <div class="intro text-white">
     <header class="max-w-3xl mx-auto p-12 pb-24 flex justify-center items-center space-x-16 min-h-[50vh]">
       <img
         src="https://avatars.githubusercontent.com/u/645641?v=4"
@@ -22,7 +22,7 @@
 useHead({
   title: 'Nico Prat',
   meta: [
-    { name: 'description', content: 'designer & développeur front-end' },
+    { name: 'description', content: 'Designer & développeur front-end' },
   ],
   link: [
     { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -31,3 +31,10 @@ useHead({
   ]
 })
 </script>
+
+<style lang="postcss" scoped>
+.intro {
+  background: radial-gradient(closest-side, theme('colors.blue.500'), theme('colors.blue.600'));
+  background-size: contain;
+}
+</style>
