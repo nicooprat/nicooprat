@@ -3,6 +3,9 @@ lockfileVersion: 5.3
 specifiers:
   '@nuxtjs/eslint-config-typescript': ^10.0.0
   '@nuxtjs/tailwindcss': ^5.3.0
+  '@vueuse/components': ^8.9.3
+  '@vueuse/core': ^8.9.3
+  '@vueuse/nuxt': ^8.9.3
   animejs: ^3.2.1
   eslint: ^8.18.0
   eslint-config-prettier: ^8.5.0
@@ -13,11 +16,14 @@ specifiers:
   typescript: ^4.7.4
 
 dependencies:
+  '@vueuse/components': 8.9.3
   animejs: 3.2.1
 
 devDependencies:
   '@nuxtjs/eslint-config-typescript': 10.0.0_eslint@8.18.0+typescript@4.7.4
   '@nuxtjs/tailwindcss': 5.3.0
+  '@vueuse/core': 8.9.3
+  '@vueuse/nuxt': 8.9.3
   eslint: 8.18.0
   eslint-config-prettier: 8.5.0_eslint@8.18.0
   eslint-plugin-prettier: 4.1.0_bd3c4b21319ad16ec3ab54a1da22f60e
@@ -994,6 +1000,9 @@ packages:
     resolution: {integrity: sha512-Q5vtl1W5ue16D+nIaW8JWebSSraJVlK+EthKn7e7UcD4KWsaSJ8BqGPXNaPghgtcn/fhvrN17Tv8ksUsQpiplw==}
     dev: true
 
+  /@types/web-bluetooth/0.0.14:
+    resolution: {integrity: sha512-5d2RhCard1nQUC3aHcq/gHzWYO6K0WJmAbjO7mQJgCQKtZpgXxv1rOM6O/dBDhDYYVutk1sciOgNSe+5YyfM8A==}
+
   /@typescript-eslint/eslint-plugin/5.30.0_eb27092288e495ddbd8abfd1fa139db3:
     resolution: {integrity: sha512-lvhRJ2pGe2V9MEU46ELTdiHgiAFZPKtLhiU5wlnaYpMc2+c1R8fh8i80ZAa665drvjHKUJyRRGg3gEm1If54ow==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -1272,6 +1281,33 @@ packages:
     resolution: {integrity: sha512-4rSJemR2NQIo9Klm1vabqWjD8rs/ZaJSzMxkMNeJS6lHiUjjUeYFbooN19NgFjztubEKh3WlZUeOLVdbbUWHsw==}
     dev: true
 
+  /@vueuse/components/8.9.3:
+    resolution: {integrity: sha512-7A97cUdJxwAESo1dJvIzxGW7Z8n5LGrLPOrQ9qgNGUKZlwVgBHJNiQ5KMddDDoqSwTVrLGspc1p8q8/+tYpHKA==}
+    dependencies:
+      '@vueuse/core': 8.9.3
+      '@vueuse/shared': 8.9.3
+      vue-demi: 0.13.5
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+    dev: false
+
+  /@vueuse/core/8.9.3:
+    resolution: {integrity: sha512-q2pr3N7FPG7IBBhEXTYOJU+38VwKMLP5IfD33byzBV4Th7f1JHT4qPKvJrvr17knAefPRzNqgt9et+xFqaRlPQ==}
+    peerDependencies:
+      '@vue/composition-api': ^1.1.0
+      vue: ^2.6.0 || ^3.2.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+      vue:
+        optional: true
+    dependencies:
+      '@types/web-bluetooth': 0.0.14
+      '@vueuse/metadata': 8.9.3
+      '@vueuse/shared': 8.9.3
+      vue-demi: 0.13.5
+
   /@vueuse/head/0.7.6_vue@3.2.37:
     resolution: {integrity: sha512-cOWqCkT3WiF5oEpw+VVEWUJd9RLD5rc7DmnFp3cePsejp+t7686uKD9Z9ZU7Twb7R/BI8iexKTmXo9D/F3v6UA==}
     peerDependencies:
@@ -1279,6 +1315,40 @@ packages:
     dependencies:
       vue: 3.2.37
     dev: true
+
+  /@vueuse/metadata/8.9.3:
+    resolution: {integrity: sha512-57gZZKtWAmcJaUBmciCohvmumVLz4+FnoVnWj7U5BWs5PC2/7gU9Z0/i1i9leDNeboAauFzAq7z1GjS8eYnT+w==}
+
+  /@vueuse/nuxt/8.9.3:
+    resolution: {integrity: sha512-bjjt/WaHm/iIyZjUcmqEUGP8OK+rLwppyVhxBNVeV/FRH+tSn745iN/3iyTYJUILKl/KazLtDrK6sunhSm6CZA==}
+    dependencies:
+      '@nuxt/kit': 3.0.0-rc.5
+      '@vueuse/core': 8.9.3
+      '@vueuse/metadata': 8.9.3
+      local-pkg: 0.4.2
+      vue-demi: 0.13.5
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - esbuild
+      - rollup
+      - supports-color
+      - vite
+      - vue
+      - webpack
+    dev: true
+
+  /@vueuse/shared/8.9.3:
+    resolution: {integrity: sha512-foorYQAU3CGknAO1w9No/rpGBJmb7L74MPltnZAYxeBRfhsajjJYYgja+D5IT2vT+/a0NciISaVp3fDwMN1ocA==}
+    peerDependencies:
+      '@vue/composition-api': ^1.1.0
+      vue: ^2.6.0 || ^3.2.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+      vue:
+        optional: true
+    dependencies:
+      vue-demi: 0.13.5
 
   /abbrev/1.1.1:
     resolution: {integrity: sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==}
@@ -6742,6 +6812,18 @@ packages:
     dependencies:
       bundle-runner: 0.0.1
     dev: true
+
+  /vue-demi/0.13.5:
+    resolution: {integrity: sha512-tO3K2bML3AwiHmVHeKCq6HLef2st4zBXIV5aEkoJl6HZ+gJWxWv2O8wLH8qrA3SX3lDoTDHNghLX1xZg83MXvw==}
+    engines: {node: '>=12'}
+    hasBin: true
+    requiresBuild: true
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0-rc.1
+      vue: ^3.0.0-0 || ^2.6.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
 
   /vue-eslint-parser/8.3.0_eslint@8.18.0:
     resolution: {integrity: sha512-dzHGG3+sYwSf6zFBa0Gi9ZDshD7+ad14DGOdTLjruRVgZXe2J+DcZ9iUhyR48z5g1PqRa20yt3Njna/veLJL/g==}

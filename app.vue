@@ -1,7 +1,7 @@
 <template>
   <div>
     <Intro />
-    <main class="bg-slate-100 pb-16 relative translate-y-full">
+    <main class="bg-slate-100 relative translate-y-full">
       <svg class="curve-top absolute bottom-full text-slate-100 origin-bottom" viewBox="0 0 500 105" PreserveAspectRatio="none">
         <path fill="currentColor" d="M250,104.6C152.1,104.6,63.7,64.6,0,0l0,105.1h500V0C436.3,64.6,347.9,104.6,250,104.6z" />
       </svg>
@@ -12,6 +12,7 @@
         <Medium :items="medium.slice(0,6)" />
         <Github :items="github.slice(0,12)" />
         <Twitter :items="twitter.slice(0,6)" />
+        <Globetrotter />
       </div>
     </main>
   </div>
