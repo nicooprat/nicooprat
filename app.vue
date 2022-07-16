@@ -9,7 +9,7 @@
         <path fill="currentColor" d="M250,0.5c97.9,0,186.3,40,250,104.6V0H0v105.1C63.7,40.5,152.1,0.5,250,0.5z" />
       </svg>
       <div class="space-y-32">
-        <Medium :items="medium.slice(0,6)" />
+        <Medium :items="medium.slice(0,6)" :tilt-ready="animationFinished" />
         <Github :items="github.slice(0,12)" />
         <Twitter :items="twitter.slice(0,6)" />
       </div>
@@ -42,6 +42,7 @@ const { data: github } = useAsyncData<GithubItem[]>('github', () =>
 )
 
 const scaleY = ref(2)
+const animationFinished = ref(false)
 
 const minmax = (val, min, max) => Math.max(min, Math.min(max, val))
 
@@ -73,6 +74,9 @@ if (process.client) {
         translateY: ['50%', '0%'],
         opacity: ['0%', '100%'],
         delay: anime.stagger(100),
+        complete: () => {
+          animationFinished.value = true
+        }
       }, '-=1200')
   })
 }
