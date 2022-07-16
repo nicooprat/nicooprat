@@ -8,11 +8,12 @@
       <svg class="curve-bottom absolute top-0 text-blue-600 origin-top" viewBox="0 0 500 105" PreserveAspectRatio="none">
         <path fill="currentColor" d="M250,0.5c97.9,0,186.3,40,250,104.6V0H0v105.1C63.7,40.5,152.1,0.5,250,0.5z" />
       </svg>
-      <div class="space-y-32">
+      <div class="">
         <Medium :items="medium.slice(0,6)" />
-        <Github :items="github.slice(0,12)" />
-        <Twitter :items="twitter.slice(0,6)" />
-        <Globetrotter />
+        <Github :items="github.slice(0,12)" class="mt-32" />
+        <Twitter :items="twitter.slice(0,6)" class="mt-32" />
+        <Globetrotter class="mt-32" />
+        <Alterecolo />
       </div>
     </main>
   </div>
