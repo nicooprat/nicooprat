@@ -1,5 +1,9 @@
 module.exports = {
-  extends: ['@nuxtjs/eslint-config-typescript', 'plugin:vue/vue3-recommended'],
+  extends: [
+    '@nuxtjs/eslint-config-typescript',
+    'plugin:vue/vue3-recommended',
+    'plugin:prettier/recommended',
+  ],
   plugins: ['prettier', '@typescript-eslint'],
   rules: {
     'comma-dangle': 0,

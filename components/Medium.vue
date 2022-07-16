@@ -1,8 +1,17 @@
 <template>
   <div class="mx-auto max-w-5xl pt-[1px] px-8">
     <div class="-mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      <article v-for="(item, i) in items" :key="i" class="flex flex-col bg-white rounded-xl shadow-xl shadow-neutral-800/20 relative" data-anime="medium-item">
-        <img :src="item.thumb" alt="item.title" class="rounded-t-lg aspect-video object-cover">
+      <article
+        v-for="(item, i) in items"
+        :key="i"
+        class="flex flex-col bg-white rounded-xl shadow-xl shadow-neutral-800/20 relative"
+        data-anime="medium-item"
+      >
+        <img
+          :src="item.thumb"
+          alt="item.title"
+          class="rounded-t-lg aspect-video object-cover"
+        />
 
         <div class="flex flex-col p-6 space-y-2 grow">
           <h3 class="font-semibold leading-5">
@@ -32,13 +41,14 @@ import { MediumItem } from '../types'
 defineProps({
   items: {
     type: Array as PropType<MediumItem[]>,
-    required: true
+    required: true,
   },
 })
 
-const formatDate = (date: string) => new Intl.DateTimeFormat('fr', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-}).format(new Date(date))
+const formatDate = (date: string) =>
+  new Intl.DateTimeFormat('fr', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }).format(new Date(date))
 </script>

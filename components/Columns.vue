@@ -8,7 +8,7 @@ export default defineComponent({
       default: 1,
     },
   },
-  setup (props, ctx) {
+  setup(props, ctx) {
     if (!ctx.slots?.default) {
       return
     }
@@ -24,9 +24,13 @@ export default defineComponent({
           h(
             'div',
             {
-              style: `flex: 0 0 ${100 / props.columns}%; width: ${100 / props.columns}%;`,
+              style: `flex: 0 0 ${100 / props.columns}%; width: ${
+                100 / props.columns
+              }%;`,
             },
-            ctx.slots?.default?.()[0].children.filter((vnode, j) => j % props.columns === i),
+            ctx.slots
+              ?.default?.()[0]
+              .children.filter((vnode, j) => j % props.columns === i),
           ),
         ),
       )
