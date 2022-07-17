@@ -1,7 +1,7 @@
 <template>
   <div>
     <Intro />
-    <main class="bg-slate-100 relative translate-y-full">
+    <main class="bg-slate-100 relative translate-y-full pb-32">
       <svg
         class="curve-top absolute bottom-full text-slate-100 origin-bottom -mb-[1px]"
         viewBox="0 0 500 105"
@@ -22,12 +22,12 @@
           d="M250,0.5c97.9,0,186.3,40,250,104.6V0H0v105.1C63.7,40.5,152.1,0.5,250,0.5z"
         />
       </svg>
-      <div class="">
+      <div>
         <Medium :items="medium.slice(0, 6)" />
         <Github :items="github.slice(0, 12)" class="mt-32" />
         <Twitter :items="twitter.slice(0, 6)" class="mt-32" />
-        <Globetrotter class="mt-32" />
-        <Alterecolo />
+        <Globetrotter class="mt-32 lg:-ml-32" />
+        <Alterecolo class="mt-32 lg:-mr-32" />
       </div>
     </main>
   </div>

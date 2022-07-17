@@ -4,7 +4,7 @@
       <div
         v-for="(item, i) in items"
         :key="i"
-        class="relative rounded-lg border-2 border-slate-200 p-4 space-y-2"
+        class="flex flex-col relative rounded-lg border-2 border-slate-200 p-4 space-y-2"
       >
         <p
           v-if="item.lang"
@@ -12,6 +12,7 @@
         >
           {{ item.lang }}
         </p>
+
         <h4 class="font-semibold">
           <a :href="item.link">
             <svg
@@ -36,7 +37,11 @@
         <p class="text-sm text-slate-600">
           {{ item.description }}
         </p>
-        <time class="text-slate-400 text-sm" :datetime="item.updated">
+
+        <time
+          class="text-slate-400 text-sm pt-4 !mt-auto"
+          :datetime="item.updated"
+        >
           {{ formatDate(item.updated) }}
           <svg
             class="w-3 inline-block"
@@ -53,7 +58,7 @@
     <img
       src="https://ghchart.rshah.org/2563eb/nicooprat"
       alt="Nico Prat activity chart on Github"
-      class="block w-full"
+      class="block w-full max-w-5xl mx-auto"
     />
   </div>
 </template>
