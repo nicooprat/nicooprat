@@ -3,7 +3,7 @@
     <Intro />
     <main class="bg-slate-100 relative translate-y-full">
       <svg
-        class="curve-top absolute bottom-full text-slate-100 origin-bottom"
+        class="curve-top absolute bottom-full text-slate-100 origin-bottom -mb-[1px]"
         viewBox="0 0 500 105"
         PreserveAspectRatio="none"
       >
