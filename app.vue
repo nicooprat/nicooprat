@@ -57,14 +57,23 @@ const { data: github } = useAsyncData<GithubItem[]>('github', () =>
   ),
 )
 
-const scaleY = ref(2)
+const scaleY = { value: 2 }
 
-const minmax = (val, min, max) => Math.max(min, Math.min(max, val))
-
-const transformTop = computed(() => minmax(-scaleY.value, 0, 1).toFixed(4))
-const transformBottom = computed(() => minmax(scaleY.value, 0, 1).toFixed(4))
+const minmax = (val: number, min: number, max: number) =>
+  Math.max(min, Math.min(max, val))
 
 if (process.client) {
+  let be = Date.now()
+  let fps = 0
+  const fpsArray = []
+  requestAnimationFrame(function loop() {
+    const now = Date.now()
+    fps = Math.round(1000 / (now - be))
+    be = now
+    fpsArray.push(fps)
+    requestAnimationFrame(loop)
+  })
+
   onMounted(() => {
     anime
       .timeline()
@@ -73,6 +82,18 @@ if (process.client) {
         value: -0.1,
         duration: 1200,
         delay: 100,
+        update: () => {
+          const transformTop = minmax(-scaleY.value, 0, 1).toFixed(4)
+          const transformBottom = minmax(scaleY.value, 0, 1).toFixed(4)
+          document.documentElement.style.setProperty(
+            '--transformTop',
+            transformTop,
+          )
+          document.documentElement.style.setProperty(
+            '--transformBottom',
+            transformBottom,
+          )
+        },
       })
       .add(
         {
@@ -112,10 +133,10 @@ body {
 }
 
 .curve-top {
-  transform: scaleY(v-bind(transformTop));
+  transform: scaleY(var(--transformTop));
 }
 
 .curve-bottom {
-  transform: scaleY(v-bind(transformBottom));
+  transform: scaleY(var(--transformBottom));
 }
 </style>
