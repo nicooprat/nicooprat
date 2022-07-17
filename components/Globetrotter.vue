@@ -82,9 +82,8 @@
         </div>
 
         <video
-          v-if="isVisible"
           ref="video"
-          src="/globetrotter.mp4"
+          :src="isVisible ? '/globetrotter.mp4' : null"
           poster="/globetrotter.jpeg"
           class="shrink-0 rounded-xl shadow-2xl shadow-blue-900 mt-16 lg:mt-0 max-w-xl mx-auto w-full lg:ml-32 lg:-mr-48"
           loop
@@ -105,10 +104,12 @@ import { vIntersectionObserver } from '@vueuse/components'
 const video = ref<HTMLVideoElement>(null)
 const isVisible = ref(false)
 
-const onIntersectionObserver = ([{ isIntersecting }]) => {
+const onIntersectionObserver = async ([{ isIntersecting }]) => {
   if (isIntersecting) {
     // Lazy load the video once
     isVisible.value = true
+    // Wait for src to be set
+    await nextTick()
     video.value.play()
   } else {
     video.value.pause()

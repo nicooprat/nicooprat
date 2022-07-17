@@ -21,11 +21,10 @@
         </div>
 
         <video
-          v-if="isVisible"
           ref="video"
-          src="/alterecolo.mp4"
+          :src="isVisible ? '/alterecolo.mp4' : null"
           poster="/alterecolo.jpeg"
-          class="rounded-xl shadow-2xl shadow-green-900 mt-16 lg:mt-0 max-w-2xl mx-auto lg:mr-0 lg:-ml-64"
+          class="rounded-xl shadow-2xl shadow-green-900 mt-16 lg:mt-0 w-full max-w-2xl mx-auto lg:mr-0 lg:-ml-64"
           loop
           muted
         ></video>
@@ -44,10 +43,12 @@ import { vIntersectionObserver } from '@vueuse/components'
 const video = ref<HTMLVideoElement>(null)
 const isVisible = ref(false)
 
-const onIntersectionObserver = ([{ isIntersecting }]) => {
+const onIntersectionObserver = async ([{ isIntersecting }]) => {
   if (isIntersecting) {
     // Lazy load the video once
     isVisible.value = true
+    // Wait for src to be set
+    await nextTick()
     video.value.play()
   } else {
     video.value.pause()
