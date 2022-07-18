@@ -77,6 +77,7 @@
 import { breakpointsTailwind } from '@vueuse/core'
 import { PropType } from 'vue'
 import { TwitterItem } from '../types'
+import { formatDate } from '../utils'
 
 defineProps({
   items: {
@@ -84,13 +85,6 @@ defineProps({
     required: true,
   },
 })
-
-const formatDate = (date: string) =>
-  new Intl.DateTimeFormat('fr', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  }).format(new Date(date))
 
 const breakpoints = useBreakpoints(breakpointsTailwind)
 

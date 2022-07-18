@@ -39,6 +39,7 @@
 <script setup lang="ts">
 import { PropType } from 'vue'
 import { MediumItem } from '../types'
+import { formatDate } from '../utils'
 
 defineProps({
   items: {
@@ -46,11 +47,4 @@ defineProps({
     required: true,
   },
 })
-
-const formatDate = (date: string) =>
-  new Intl.DateTimeFormat('fr', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  }).format(new Date(date))
 </script>
