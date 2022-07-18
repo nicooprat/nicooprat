@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="overflow-hidden">
     <Intro />
     <main class="bg-slate-100 relative translate-y-full pb-32">
       <svg
@@ -26,8 +26,9 @@
         <Medium :items="medium.slice(0, 6)" />
         <Github :items="github.slice(0, 12)" class="mt-32" />
         <Twitter :items="twitter.slice(0, 6)" class="mt-32" />
-        <Globetrotter class="mt-32 lg:-ml-32" />
-        <Alterecolo class="mt-32 lg:-mr-32" />
+        <Meetup :items="meetup.slice(0, 6)" class="mt-32" />
+        <Globetrotter class="mt-32 xl:-ml-32" />
+        <Alterecolo class="mt-32 xl:-mr-32" />
       </div>
     </main>
   </div>
@@ -35,25 +36,31 @@
 
 <script setup lang="ts">
 import anime from 'animejs'
-import { MediumItem, GithubItem, TwitterItem } from './types'
+import { MediumItem, GithubItem, TwitterItem, MeetupItem } from './types'
 
 const config = useRuntimeConfig()
 
 const { data: twitter } = useAsyncData<TwitterItem[]>('twitter', () =>
   $fetch(
-    `https://api.apify.com/v2/actor-tasks/YTsKf4NT2htwvumtX/runs/last/dataset/items?token=${config.apifyToken}&status=SUCCEEDED`,
+    `https://api.apify.com/v2/actor-tasks/YTsKf4NT2htwvumtX/runs/last/dataset/items?token=${config.apifyToken}&status=SUCCEEDED&clean=1`,
   ),
 )
 
 const { data: medium } = useAsyncData<MediumItem[]>('medium', () =>
   $fetch(
-    `https://api.apify.com/v2/actor-tasks/Ko2MdgnAosj3Tduqp/runs/last/dataset/items?token=${config.apifyToken}&ui=1&clean=true`,
+    `https://api.apify.com/v2/actor-tasks/Ko2MdgnAosj3Tduqp/runs/last/dataset/items?token=${config.apifyToken}&status=SUCCEEDED&clean=1`,
   ),
 )
 
 const { data: github } = useAsyncData<GithubItem[]>('github', () =>
   $fetch(
-    `https://api.apify.com/v2/actor-tasks/tyh6K9orWEgWGhgov/runs/last/dataset/items?token=${config.apifyToken}&ui=1&clean=true`,
+    `https://api.apify.com/v2/actor-tasks/tyh6K9orWEgWGhgov/runs/last/dataset/items?token=${config.apifyToken}&status=SUCCEEDED&clean=1`,
+  ),
+)
+
+const { data: meetup } = useAsyncData<MeetupItem[]>('meetup', () =>
+  $fetch(
+    `https://api.apify.com/v2/datasets/2UtdYYQW1rXvPozbk/items?token=${config.apifyToken}&status=SUCCEEDED&clean=1`,
   ),
 )
 
@@ -93,7 +100,7 @@ if (process.client) {
       )
       .add(
         {
-          targets: '[data-anime="medium-item"]',
+          targets: 'article',
           translateY: ['50%', '0%'],
           opacity: ['0%', '100%'],
           delay: anime.stagger(100),
