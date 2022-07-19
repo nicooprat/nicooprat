@@ -1,6 +1,5 @@
 <template>
-  <div class="mx-auto max-w-5xl pt-[1px] px-8 space-y-8">
-    {{ ThreeColumns }}
+  <div class="mx-auto max-w-5xl px-8 space-y-8 safe-area">
     <Heading class="text-blue-400">
       <template #icon="{ classes }">
         <svg :class="classes" viewBox="0 0 24 24">
@@ -16,7 +15,11 @@
       </template>
     </Heading>
 
-    <Columns :columns="columns" class="-mx-4 -my-8">
+    <component
+      :is="columns === 1 ? 'div' : Columns"
+      :columns="columns"
+      class="-mx-4 -my-8 snap"
+    >
       <div
         v-for="item in items"
         :key="item.id"
@@ -69,7 +72,7 @@
           </svg>
         </p>
       </div>
-    </Columns>
+    </component>
   </div>
 </template>
 
@@ -77,7 +80,8 @@
 import { breakpointsTailwind } from '@vueuse/core'
 import { PropType } from 'vue'
 import { TwitterItem } from '../types'
-import { formatDate } from '../utils'
+import Columns from './Columns.vue'
+import { formatDate } from '~~/utils'
 
 defineProps({
   items: {
@@ -91,11 +95,11 @@ const breakpoints = useBreakpoints(breakpointsTailwind)
 // Can't use computed for some reason?
 const columns = ref(1)
 watchEffect(() => {
-  if (breakpoints.greater('md').value) {
+  if (breakpoints.greater('lg').value) {
     columns.value = 3
     return
   }
-  if (breakpoints.greater('sm').value) {
+  if (breakpoints.greater('md').value) {
     columns.value = 2
     return
   }

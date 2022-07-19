@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto max-w-5xl pt-[1px] px-8 space-y-8">
+  <div class="mx-auto max-w-5xl px-8 space-y-8 safe-area">
     <Heading class="text-rose-500">
       <template #icon="{ classes }">
         <svg :class="classes" viewBox="0 0 105.1 82.1">
@@ -19,7 +19,7 @@
       </template>
     </Heading>
 
-    <div class="-mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="-mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-8 snap">
       <div
         v-for="(item, i) in items"
         :key="i"

@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto max-w-5xl pt-[1px] px-8 space-y-16">
+  <div class="mx-auto max-w-5xl px-8 space-y-16 safe-area">
     <Heading class="text-slate-700">
       <template #icon="{ classes }">
         <svg :class="classes" viewBox="0 0 24 24">
@@ -15,7 +15,7 @@
       </template>
     </Heading>
 
-    <div class="grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <div class="grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 snap">
       <div
         v-for="(item, i) in items"
         :key="i"
@@ -73,7 +73,7 @@
     <img
       src="https://ghchart.rshah.org/2563eb/nicooprat"
       alt="Nico Prat activity chart on Github"
-      class="block w-full max-w-5xl mx-auto filter brightness-110 mix-blend-multiply"
+      class="hidden md:block w-full max-w-5xl mx-auto filter brightness-110 mix-blend-multiply"
     />
   </div>
 </template>
@@ -81,7 +81,7 @@
 <script setup lang="ts">
 import { PropType } from 'vue'
 import { GithubItem } from '../types'
-import { formatDate } from '../utils'
+import { formatDate } from '~~/utils'
 
 defineProps({
   items: {

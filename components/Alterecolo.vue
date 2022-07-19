@@ -1,5 +1,5 @@
 <template>
-  <div v-intersection-observer="onIntersectionObserver" class="px-8">
+  <div v-intersection-observer="onIntersectionObserver" class="px-8 safe-area">
     <a
       href="https://www.alterecolo.fr/"
       class="block mx-auto max-w-5xl bg-gradient-to-br from-green-400 to-green-600 rounded-3xl shadow-2xl shadow-green-700/50 p-16 lg:p-32 relative z-0 text-white"
@@ -20,14 +20,19 @@
           </p>
         </div>
 
-        <video
-          ref="video"
-          :src="isVisible ? '/alterecolo.mp4' : null"
-          poster="/alterecolo.jpeg"
-          class="rounded-xl shadow-2xl shadow-green-900 mt-16 lg:mt-0 w-full max-w-2xl mx-auto lg:mr-0 lg:-ml-64"
-          loop
-          muted
-        ></video>
+        <div
+          class="rounded-xl shadow-2xl shadow-green-900 mt-16 lg:mt-0 sm:w-full sm:max-w-2xl -mx-20 sm:mx-auto lg:mr-0 lg:-ml-64"
+        >
+          <video
+            ref="video"
+            :src="isVisible ? '/alterecolo.mp4' : null"
+            poster="/alterecolo.jpeg"
+            class="rounded-xl w-full"
+            playsinline
+            loop
+            muted
+          ></video>
+        </div>
       </div>
 
       <h4 class="text-green-900 font-bold text-center mt-16 lg:-mb-16">

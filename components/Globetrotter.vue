@@ -1,5 +1,5 @@
 <template>
-  <div v-intersection-observer="onIntersectionObserver" class="px-8">
+  <div v-intersection-observer="onIntersectionObserver" class="px-8 safe-area">
     <a
       href="https://www.globetrotter.io/"
       class="block bg-gradient-to-br from-blue-400 to-blue-600 max-w-5xl mx-auto rounded-3xl shadow-2xl shadow-blue-700/50 p-16 lg:p-32 relative z-0 text-white"
@@ -81,14 +81,19 @@
           </div>
         </div>
 
-        <video
-          ref="video"
-          :src="isVisible ? '/globetrotter.mp4' : null"
-          poster="/globetrotter.jpeg"
-          class="shrink-0 rounded-xl shadow-2xl shadow-blue-900 mt-16 lg:mt-0 max-w-xl mx-auto w-full lg:ml-32 lg:-mr-48"
-          loop
-          muted
-        ></video>
+        <div
+          class="shrink-0 rounded-xl shadow-2xl shadow-blue-900 mt-16 lg:mt-0 sm:max-w-xl -mx-20 sm:mx-auto sm:w-full lg:ml-32 lg:-mr-48"
+        >
+          <video
+            ref="video"
+            :src="isVisible ? '/globetrotter.mp4' : null"
+            poster="/globetrotter.jpeg"
+            class="rounded-xl w-full"
+            playsinline
+            loop
+            muted
+          ></video>
+        </div>
       </div>
 
       <h4 class="text-blue-900 font-bold text-center mt-16 lg:-mb-16">

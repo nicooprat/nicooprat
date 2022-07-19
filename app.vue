@@ -22,13 +22,14 @@
           d="M250,0.5c97.9,0,186.3,40,250,104.6V0H0v105.1C63.7,40.5,152.1,0.5,250,0.5z"
         />
       </svg>
-      <div>
+
+      <div class="space-y-16 md:space-y-32">
         <Medium :items="medium.slice(0, 6)" />
-        <Github :items="github.slice(0, 12)" class="mt-32" />
-        <Twitter :items="twitter.slice(0, 6)" class="mt-32" />
-        <Meetup :items="meetup.slice(0, 6)" class="mt-32" />
-        <Globetrotter class="mt-32 xl:-ml-32" />
-        <Alterecolo class="mt-32 xl:-mr-32" />
+        <Github :items="github.slice(0, 12)" />
+        <Twitter :items="twitter.slice(0, 6)" />
+        <Meetup :items="meetup.slice(0, 6)" />
+        <Globetrotter class="xl:-ml-32" />
+        <Alterecolo class="xl:-mr-32" />
       </div>
     </main>
   </div>
@@ -60,7 +61,7 @@ const { data: github } = useAsyncData<GithubItem[]>('github', () =>
 
 const { data: meetup } = useAsyncData<MeetupItem[]>('meetup', () =>
   $fetch(
-    `https://api.apify.com/v2/datasets/2UtdYYQW1rXvPozbk/items?token=${config.apifyToken}&status=SUCCEEDED&clean=1`,
+    `https://api.apify.com/v2/actor-tasks/E6lfAp6bDuymUC8ae/runs/last/dataset/items?token=${config.apifyToken}&status=SUCCEEDED&clean=1`,
   ),
 )
 
@@ -124,5 +125,26 @@ body {
 
 .curve-bottom {
   transform: scaleY(v-bind(transformBottom));
+}
+
+.safe-area {
+  border-left: env(safe-area-inset-left) solid transparent;
+  border-right: env(safe-area-inset-right) solid transparent;
+}
+
+@media (max-width: theme('screens.md')) {
+  .snap {
+    @apply -mx-8 py-8 gap-0 flex overflow-x-auto snap-x snap-mandatory;
+
+    /* Fix Safari bug missing last margin */
+    &:after {
+      content: '';
+      @apply w-8 shrink-0;
+    }
+
+    > * {
+      @apply w-[75vw] shrink-0 ml-8 snap-center;
+    }
+  }
 }
 </style>

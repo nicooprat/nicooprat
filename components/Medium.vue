@@ -1,6 +1,6 @@
 <template>
   <div class="mx-auto max-w-5xl pt-[1px] px-8">
-    <div class="-mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="-mt-24 md:-mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-8 snap">
       <article
         v-for="(item, i) in items"
         :key="i"
@@ -39,7 +39,7 @@
 <script setup lang="ts">
 import { PropType } from 'vue'
 import { MediumItem } from '../types'
-import { formatDate } from '../utils'
+import { formatDate } from '~~/utils'
 
 defineProps({
   items: {
