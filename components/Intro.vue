@@ -1,7 +1,7 @@
 <template>
   <div class="intro text-white">
     <header
-      class="max-w-3xl mx-auto p-12 pb-24 flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-16 min-h-[50vh] text-center md:text-left"
+      class="max-w-3xl mx-auto p-12 pb-24 flex flex-col opacity-0 md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-16 min-h-[50vh] text-center md:text-left"
     >
       <img
         src="https://avatars.githubusercontent.com/u/645641?v=4"
