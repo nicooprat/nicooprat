@@ -41,14 +41,14 @@
 
         <div v-if="item.thumbs" class="flex flex-col -mx-8">
           <img
-            v-for="(thumb, i) in item.thumbs"
+            v-for="(thumb, i) in getThumbs(item.thumbs)"
             :key="i"
             :src="thumb"
             loading="lazy"
             class="rounded-lg shadow-lg"
             :class="{
-              'w-full': item.thumbs.length === 1,
-              'w-3/5': item.thumbs.length > 1,
+              'w-full': getThumbs(item.thumbs).length === 1,
+              'w-3/5': getThumbs(item.thumbs).length > 1,
               'self-end': i % 2 === 1,
               '-mt-4': i > 0,
             }"
@@ -105,4 +105,12 @@ watchEffect(() => {
   }
   columns.value = 1
 })
+
+const getThumbs = (thumbs: TwitterItem['thumbs']) => {
+  // Meh
+  if (typeof thumbs === 'string') {
+    return [thumbs]
+  }
+  return thumbs
+}
 </script>

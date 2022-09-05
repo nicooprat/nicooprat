@@ -19,7 +19,7 @@ export interface TwitterItem {
   date: string
   id: string
   link: string
-  thumbs: string[]
+  thumbs: string | string[] | null
 }
 
 export interface MeetupItem {
