@@ -27,7 +27,7 @@
       >
         <img
           loading="lazy"
-          src="https://avatars.githubusercontent.com/u/645641?v=4"
+          src="https://github.com/nicooprat.png"
           alt="Nico Prat Twitter"
           class="rounded-full w-12 -mt-8 -mr-8 mb-4 ml-4 float-right shadow-md"
         />
