@@ -4,7 +4,6 @@ import { defineNuxtConfig } from 'nuxt'
 export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss', '@vueuse/nuxt'],
   runtimeConfig: {
-    apifyToken: process.env.APIFY_TOKEN
-  }
-
+    apifyToken: process.env.APIFY_TOKEN,
+  },
 })

@@ -4,7 +4,7 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
-    "generate": "npm run scrap && nuxt generate",
+    "generate": "nuxt generate",
     "preview": "nuxt preview",
     "lint": "eslint ./components/**/* --no-fix",
     "lint:fix": "eslint ./components/**/* --fix",
@@ -18,15 +18,17 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.1.0",
     "eslint-plugin-vue": "^9.1.1",
-    "nuxt": "3.0.0-rc.4",
+    "nuxt": "^3.0.0-rc.9",
     "prettier": "^2.7.1",
     "puppeteer": "^17.1.1",
-    "typescript": "^4.7.4"
+    "typescript": "^4.7.4",
+    "unctx": "^2.0.2",
+    "untyped": "^0.4.7"
   },
   "dependencies": {
-    "@vueuse/nuxt": "^8.9.3",
-    "@vueuse/core": "^8.9.3",
-    "@vueuse/components": "^8.9.3",
+    "@vueuse/components": "^9.2.0",
+    "@vueuse/core": "^9.2.0",
+    "@vueuse/nuxt": "^9.2.0",
     "animejs": "^3.2.1"
   }
 }
