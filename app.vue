@@ -24,22 +24,10 @@
       </svg>
 
       <div class="space-y-16 md:space-y-32">
-        <Medium
-          v-if="!mediumError && medium.length"
-          :items="medium.slice(0, 6)"
-        />
-        <Github
-          v-if="!githubError && github.length"
-          :items="github.slice(0, 12)"
-        />
-        <Twitter
-          v-if="!twitterError && twitter.length"
-          :items="twitter.slice(0, 6)"
-        />
-        <Meetup
-          v-if="!meetupError && meetup.length"
-          :items="meetup.slice(0, 6)"
-        />
+        <Medium />
+        <Github />
+        <Twitter />
+        <Meetup />
         <Globetrotter class="xl:-ml-32" />
         <Alterecolo class="xl:-mr-32" />
       </div>
@@ -49,61 +37,6 @@
 
 <script setup lang="ts">
 import anime from 'animejs'
-import { MediumItem, GithubItem, TwitterItem, MeetupItem } from './types'
-
-const config = useRuntimeConfig()
-
-const { data: twitter, error: twitterError } = await useAsyncData<
-  TwitterItem[]
->('twitter', () =>
-  $fetch(
-    `https://api.apify.com/v2/actor-tasks/YTsKf4NT2htwvumtX/runs/last/dataset/items?token=${config.apifyToken}&status=SUCCEEDED&clean=1`,
-  ),
-)
-
-if (twitterError.value) {
-  // eslint-disable-next-line no-console
-  console.error('twitter\n', twitterError.value)
-}
-
-const { data: medium, error: mediumError } = await useAsyncData<MediumItem[]>(
-  'medium',
-  () =>
-    $fetch(
-      `https://api.apify.com/v2/actor-tasks/Ko2MdgnAosj3Tduqp/runs/last/dataset/items?token=${config.apifyToken}&status=SUCCEEDED&clean=1`,
-    ),
-)
-
-if (mediumError.value) {
-  // eslint-disable-next-line no-console
-  console.error('medium\n', mediumError.value)
-}
-
-const { data: github, error: githubError } = await useAsyncData<GithubItem[]>(
-  'github',
-  () =>
-    $fetch(
-      `https://api.apify.com/v2/actor-tasks/tyh6K9orWEgWGhgov/runs/last/dataset/items?token=${config.apifyToken}&status=SUCCEEDED&clean=1`,
-    ),
-)
-
-if (githubError.value) {
-  // eslint-disable-next-line no-console
-  console.error('github\n', githubError.value)
-}
-
-const { data: meetup, error: meetupError } = await useAsyncData<MeetupItem[]>(
-  'meetup',
-  () =>
-    $fetch(
-      `https://api.apify.com/v2/actor-tasks/E6lfAp6bDuymUC8ae/runs/last/dataset/items?token=${config.apifyToken}&status=SUCCEEDED&clean=1`,
-    ),
-)
-
-if (meetupError.value) {
-  // eslint-disable-next-line no-console
-  console.error('meetup\n', meetupError.value)
-}
 
 const scaleY = ref(2)
 

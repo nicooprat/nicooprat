@@ -21,11 +21,3 @@ export interface TwitterItem {
   link: string
   thumbs: string | string[] | null
 }
-
-export interface MeetupItem {
-  title: string
-  group: string
-  time: string
-  thumb: string
-  link: string
-}

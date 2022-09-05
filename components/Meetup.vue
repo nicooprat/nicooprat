@@ -1,5 +1,8 @@
 <template>
-  <div class="mx-auto max-w-5xl px-8 space-y-8 safe-area">
+  <div
+    v-if="data?.events?.length"
+    class="mx-auto max-w-5xl px-8 space-y-8 safe-area"
+  >
     <Heading class="text-rose-500">
       <template #icon="{ classes }">
         <svg :class="classes" viewBox="0 0 105.1 82.1">
@@ -21,7 +24,7 @@
 
     <div class="-mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-8 snap">
       <div
-        v-for="(item, i) in items"
+        v-for="(item, i) in data.events.slice(0, 6)"
         :key="i"
         class="flex flex-col bg-gradient-to-br from-rose-500 to-rose-600 rounded-xl shadow-xl shadow-red-800/20 p-6 relative text-white mt-8"
       >
@@ -53,20 +56,15 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from 'vue'
-import { MeetupItem } from '../types'
+import { formatDate } from '~~/utils'
 
-defineProps({
-  items: {
-    type: Array as PropType<MeetupItem[]>,
-    required: true,
-  },
-})
+const { data, error } = await useAsyncData(
+  'meetup',
+  () => import('../storage/meetup.json'),
+)
 
-const formatDate = (date: string) =>
-  new Intl.DateTimeFormat('fr', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  }).format(new Date(date.split('[')[0]))
+if (error.value) {
+  // eslint-disable-next-line no-console
+  console.error('meetup\n', error.value)
+}
 </script>

@@ -3,4 +3,4 @@ export const formatDate = (date: string) =>
     year: 'numeric',
     month: 'long',
     day: 'numeric',
-  }).format(new Date(date))
+  }).format(new Date(date.split('[')[0])) // Remove [Timezone]

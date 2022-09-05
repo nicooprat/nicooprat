@@ -37,14 +37,19 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from 'vue'
 import { MediumItem } from '../types'
 import { formatDate } from '~~/utils'
 
-defineProps({
-  items: {
-    type: Array as PropType<MediumItem[]>,
-    required: true,
-  },
-})
+const config = useRuntimeConfig()
+
+const { data: items, error } = await useAsyncData<MediumItem[]>('medium', () =>
+  $fetch(
+    `https://api.apify.com/v2/actor-tasks/Ko2MdgnAosj3Tduqp/runs/last/dataset/items?token=${config.apifyToken}&status=SUCCEEDED&clean=1`,
+  ),
+)
+
+if (error.value) {
+  // eslint-disable-next-line no-console
+  console.error('medium\n', error.value)
+}
 </script>

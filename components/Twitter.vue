@@ -21,7 +21,7 @@
       class="-mx-4 -my-8 snap"
     >
       <div
-        v-for="item in items"
+        v-for="item in items.slice(0, 6)"
         :key="item.id"
         class="relative rounded-xl bg-gradient-to-b from-blue-300 to-blue-400 shadow-lg shadow-blue-600/25 p-6 space-y-3 bg-blue-500 text-blue-900 self-start mx-4 my-8"
       >
@@ -77,18 +77,26 @@
 </template>
 
 <script setup lang="ts">
-import { breakpointsTailwind } from '@vueuse/core'
-import { PropType } from 'vue'
+import { ref, watchEffect } from 'vue' // temp fix
+import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
 import { TwitterItem } from '../types'
 import Columns from './Columns.vue'
 import { formatDate } from '~~/utils'
 
-defineProps({
-  items: {
-    type: Array as PropType<TwitterItem[]>,
-    required: true,
-  },
-})
+const config = useRuntimeConfig()
+
+const { data: items, error } = await useAsyncData<TwitterItem[]>(
+  'twitter',
+  () =>
+    $fetch(
+      `https://api.apify.com/v2/actor-tasks/YTsKf4NT2htwvumtX/runs/last/dataset/items?token=${config.apifyToken}&status=SUCCEEDED&clean=1`,
+    ),
+)
+
+if (error.value) {
+  // eslint-disable-next-line no-console
+  console.error('twitter\n', error.value)
+}
 
 const breakpoints = useBreakpoints(breakpointsTailwind)
 
