@@ -29,7 +29,7 @@ const getEvents = async (page) => {
 }
 
 ;(async () => {
-  const browser = await launch()
+  const browser = await launch({ headless: false })
   const page = await browser.newPage()
 
   page.setViewport({
@@ -39,8 +39,14 @@ const getEvents = async (page) => {
 
   await page.goto('https://www.meetup.com/fr-FR/your-events/?pe=1')
 
-  await page.waitForSelector('#onetrust-accept-btn-handler')
-  await page.click('#onetrust-accept-btn-handler')
+  try {
+    await page.waitForSelector('#onetrust-accept-btn-handler', {
+      timeout: 10_000,
+    })
+    await page.click('#onetrust-accept-btn-handler')
+  } catch (e) {
+    // nevermind
+  }
 
   await page.waitForSelector('#login-link')
   await page.click('#login-link')
