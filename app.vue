@@ -46,6 +46,28 @@ const transformTop = computed(() => minmax(-scaleY.value, 0, 1))
 const transformBottom = computed(() => minmax(scaleY.value, 0, 1))
 
 if (process.client) {
+  useHead({
+    title: 'Nico Prat',
+    meta: [
+      { name: 'description', content: 'Designer & développeur front-end' },
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1, viewport-fit=cover',
+      },
+    ],
+    link: [
+      { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+      { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: true },
+      {
+        href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap',
+        rel: 'stylesheet',
+      },
+    ],
+    bodyAttrs: {
+      style: 'background-color: rgb(37 99 235)', // Prevent white background as soon as possible
+    },
+  })
+
   onMounted(() => {
     anime
       .timeline({
