@@ -21,7 +21,7 @@
       class="-mx-4 -my-8 snap"
     >
       <div
-        v-for="item in items.slice(0, 6)"
+        v-for="item in data.tweets.slice(0, 6)"
         :key="item.id"
         class="relative rounded-xl bg-gradient-to-b from-blue-300 to-blue-400 shadow-lg shadow-blue-600/25 p-6 space-y-3 bg-blue-500 text-blue-900 self-start mx-4 my-8"
       >
@@ -41,14 +41,14 @@
 
         <div v-if="item.thumbs" class="flex flex-col -mx-8">
           <img
-            v-for="(thumb, i) in getThumbs(item.thumbs)"
+            v-for="(thumb, i) in item.thumbs"
             :key="i"
             :src="thumb"
             loading="lazy"
             class="rounded-lg shadow-lg"
             :class="{
-              'w-full': getThumbs(item.thumbs).length === 1,
-              'w-3/5': getThumbs(item.thumbs).length > 1,
+              'w-full': item.thumbs.length === 1,
+              'w-3/5': item.thumbs.length > 1,
               'self-end': i % 2 === 1,
               '-mt-4': i > 0,
             }"
@@ -83,20 +83,10 @@ import { TwitterItem } from '../types'
 import Columns from './Columns.vue'
 import { formatDate } from '~~/utils'
 
-const config = useRuntimeConfig()
-
-const { data: items, error } = await useAsyncData<TwitterItem[]>(
+const { data } = await useAsyncData(
   'twitter',
-  () =>
-    $fetch(
-      `https://api.apify.com/v2/actor-tasks/YTsKf4NT2htwvumtX/runs/last/dataset/items?token=${config.apifyToken}&status=SUCCEEDED&clean=1`,
-    ),
+  () => import('../storage/twitter.json'),
 )
-
-if (error.value) {
-  // eslint-disable-next-line no-console
-  console.error('twitter\n', error.value)
-}
 
 const breakpoints = useBreakpoints(breakpointsTailwind)
 
@@ -113,12 +103,4 @@ watchEffect(() => {
   }
   columns.value = 1
 })
-
-const getThumbs = (thumbs: TwitterItem['thumbs']) => {
-  // Meh
-  if (typeof thumbs === 'string') {
-    return [thumbs]
-  }
-  return thumbs
-}
 </script>

@@ -58,13 +58,8 @@
 <script setup lang="ts">
 import { formatDate } from '~~/utils'
 
-const { data, error } = await useAsyncData(
+const { data } = await useAsyncData(
   'meetup',
   () => import('../storage/meetup.json'),
 )
-
-if (error.value) {
-  // eslint-disable-next-line no-console
-  console.error('meetup\n', error.value)
-}
 </script>

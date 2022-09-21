@@ -2,7 +2,7 @@
   <div class="mx-auto max-w-5xl pt-[1px] px-8">
     <div class="-mt-24 md:-mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-8 snap">
       <article
-        v-for="(item, i) in items"
+        v-for="(item, i) in data.articles"
         :key="i"
         class="flex flex-col bg-white rounded-xl shadow-lg shadow-neutral-800/10 relative"
       >
@@ -37,19 +37,10 @@
 </template>
 
 <script setup lang="ts">
-import { MediumItem } from '../types'
 import { formatDate } from '~~/utils'
 
-const config = useRuntimeConfig()
-
-const { data: items, error } = await useAsyncData<MediumItem[]>('medium', () =>
-  $fetch(
-    `https://api.apify.com/v2/actor-tasks/Ko2MdgnAosj3Tduqp/runs/last/dataset/items?token=${config.apifyToken}&status=SUCCEEDED&clean=1`,
-  ),
+const { data } = await useAsyncData(
+  'medium',
+  () => import('../storage/medium.json'),
 )
-
-if (error.value) {
-  // eslint-disable-next-line no-console
-  console.error('medium\n', error.value)
-}
 </script>

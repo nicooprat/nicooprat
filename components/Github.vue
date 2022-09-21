@@ -17,7 +17,7 @@
 
     <div class="grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 snap">
       <div
-        v-for="(item, i) in items.slice(0, 12)"
+        v-for="(item, i) in data.repos.slice(0, 12)"
         :key="i"
         class="flex flex-col relative rounded-lg border-2 border-slate-200 p-4 space-y-2"
       >
@@ -79,19 +79,10 @@
 </template>
 
 <script setup lang="ts">
-import { GithubItem } from '../types'
 import { formatDate } from '~~/utils'
 
-const config = useRuntimeConfig()
-
-const { data: items, error } = await useAsyncData<GithubItem[]>('github', () =>
-  $fetch(
-    `https://api.apify.com/v2/actor-tasks/tyh6K9orWEgWGhgov/runs/last/dataset/items?token=${config.apifyToken}&status=SUCCEEDED&clean=1`,
-  ),
+const { data } = await useAsyncData(
+  'github',
+  () => import('../storage/github.json'),
 )
-
-if (error.value) {
-  // eslint-disable-next-line no-console
-  console.error('github\n', error.value)
-}
 </script>
