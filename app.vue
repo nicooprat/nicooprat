@@ -56,6 +56,7 @@ if (process.client) {
       },
     ],
     link: [
+      { rel: 'alternate icon', type: 'image/png', href: 'https://github.com/nicooprat.png' },
       { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
       { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: true },
       {
