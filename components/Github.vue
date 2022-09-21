@@ -17,7 +17,7 @@
 
     <div class="grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 snap">
       <div
-        v-for="(item, i) in data.repos.slice(0, 12)"
+        v-for="(item, i) in repos.slice(0, 12)"
         :key="i"
         class="flex flex-col relative rounded-lg border-2 border-slate-200 p-4 space-y-2"
       >
@@ -80,9 +80,5 @@
 
 <script setup lang="ts">
 import { formatDate } from '~~/utils'
-
-const { data } = await useAsyncData(
-  'github',
-  () => import('../storage/github.json'),
-)
+import { repos } from "../storage/github.json";
 </script>

@@ -21,7 +21,7 @@
       class="-mx-4 -my-8 snap"
     >
       <div
-        v-for="item in data.tweets.slice(0, 6)"
+        v-for="item in tweets.slice(0, 6)"
         :key="item.id"
         class="relative rounded-xl bg-gradient-to-b from-blue-300 to-blue-400 shadow-lg shadow-blue-600/25 p-6 space-y-3 bg-blue-500 text-blue-900 self-start mx-4 my-8"
       >
@@ -79,14 +79,9 @@
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue' // temp fix
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
-import { TwitterItem } from '../types'
+import { tweets } from "../storage/twitter.json";
 import Columns from './Columns.vue'
 import { formatDate } from '~~/utils'
-
-const { data } = await useAsyncData(
-  'twitter',
-  () => import('../storage/twitter.json'),
-)
 
 const breakpoints = useBreakpoints(breakpointsTailwind)
 
