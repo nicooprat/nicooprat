@@ -40,19 +40,22 @@ import anime from 'animejs'
 
 const scaleY = ref(2)
 
-const minmax = (val, min, max) => Math.max(min, Math.min(max, val))
+const minmax = (val, min, max) => Math.max(min, Math.min(max, val)).toFixed(4)
 
-const transformTop = computed(() => minmax(-scaleY.value, 0, 1).toFixed(4))
-const transformBottom = computed(() => minmax(scaleY.value, 0, 1).toFixed(4))
+const transformTop = computed(() => minmax(-scaleY.value, 0, 1))
+const transformBottom = computed(() => minmax(scaleY.value, 0, 1))
 
 if (process.client) {
   onMounted(() => {
     anime
-      .timeline()
+      .timeline({
+        easing: 'easeOutElastic(1, .75)',
+        duration: 800
+      })
       .add({
         targets: scaleY,
         value: -0.1,
-        duration: 1200,
+        duration: 1000,
         delay: 100,
       })
       .add(
@@ -79,7 +82,7 @@ if (process.client) {
           opacity: ['0%', '100%'],
           delay: anime.stagger(100),
         },
-        '-=1200',
+        '-=1000',
       )
   })
 }
